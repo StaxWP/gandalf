@@ -1,0 +1,22 @@
+{
+  "name": "staxwp/gandalf-wp",
+  "description": "Just a wizard. You shall follow the steps.",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "StaxWp\\Gandalf\\Core\\": "core/",
+      "StaxWp\\Gandalf\\Core\\Routing\\": "core/routing/"
+    }
+  },
+  "authors": [
+    {
+      "name": "George Tudor",
+      "email": "georgebitq@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require-dev": {
+    "pestphp/pest": "^1.21"
+  }
+}
