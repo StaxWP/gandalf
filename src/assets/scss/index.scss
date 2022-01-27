@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
+
+#app {
+  @apply gan-h-screen;
+}
+
+#app .gan-yt-video iframe {
+  @apply gan-border-8 gan-border-white gan-rounded gan-shadow-xl;
+}
+
+.v-popper--theme-tooltip {
+  @apply gan-text-sm;
+}
+
 @tailwind utilities;
