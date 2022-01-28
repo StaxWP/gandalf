@@ -10,6 +10,7 @@
         <img v-if="logo" :src="logo" class="gan-block gan-w-full gan-h-full" />
         <svg
           v-else
+          class="gan-h-full"
           style="enable-background: new 0 0 48 48"
           version="1.1"
           viewBox="0 0 48 48"

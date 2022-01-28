@@ -50,13 +50,16 @@
 
       <div v-else></div>
 
+      <div v-if="progress.numbers"></div>
+
       <button
         v-if="next.show && total_steps !== step"
-        v-tooltip="next.disabled ? next.tooltip : ''"
+        v-tooltip.left="next.tooltip"
         @click.stop="goNext()"
         class="gan-inline-flex gan-items-center gan-cursor-pointer gan-bg-gradient-to-r gan-from-indigo-600 gan-to-blue-600 hover:gan-to-indigo-600 gan-text-white gan-rounded-full gan-px-6 gan-py-3"
-        :disabled="next.disabled"
-        :class="{ 'disabled:gan-opacity-75': next.disabled }"
+        :class="{
+          'gan-opacity-75 gan-cursor-not-allowed': next.disabled,
+        }"
       >
         {{ btnNext }}
         <span class="gan-block gan-ml-2 gan-w-5">
@@ -79,13 +82,13 @@
           </svg>
         </span>
       </button>
+      <div v-else></div>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  emits: ["updateStep"],
   props: {
     step: {
       type: Number,
@@ -100,15 +103,7 @@ export default {
       default: () => ({
         enabled: false,
         full: false,
-      }),
-    },
-    next: {
-      type: Object,
-      required: true,
-      default: () => ({
-        show: true,
-        disabled: false,
-        tooltip: "",
+        numbers: false,
       }),
     },
     btnNext: {
@@ -120,24 +115,41 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      next: {
+        show: true,
+        disabled: false,
+        tooltip: "",
+      },
+    };
+  },
   computed: {
     progressBar: function () {
-      console.log(
-        this.step,
-        this.total_steps,
-        (this.step / this.total_steps) * 100
-      );
       return Math.round((this.step / this.total_steps) * 100);
     },
+  },
+  created() {
+    this.emitter.on("update:btn:next:show", (show) => {
+      this.next.show = show;
+    });
+    this.emitter.on("update:btn:next:disabled", (disabled) => {
+      this.next.disabled = disabled;
+    });
+    this.emitter.on("update:btn:next:tooltip", (tooltip) => {
+      this.next.tooltip = tooltip;
+    });
   },
   methods: {
     goPrev() {
       const prevStep = this.step - 1;
-      this.$emit("updateStep", prevStep);
+      this.emitter.emit("update:step", prevStep);
     },
     goNext() {
+      if (this.next.disabled) return;
+
       const nextStep = this.step + 1;
-      this.$emit("updateStep", nextStep);
+      this.emitter.emit("update:step", nextStep);
     },
   },
 };

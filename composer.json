@@ -6,6 +6,7 @@
   "autoload": {
     "psr-4": {
       "StaxWp\\Gandalf\\Core\\": "core/",
+      "StaxWp\\Gandalf\\Core\\Components\\": "core/components/",
       "StaxWp\\Gandalf\\Core\\Routing\\": "core/routing/"
     }
   },

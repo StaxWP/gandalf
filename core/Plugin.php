@@ -10,6 +10,8 @@ use StaxWp\Gandalf\Core\Routing\Processor;
 use StaxWp\Gandalf\Core\Routing\Router;
 use StaxWp\Gandalf\Core\Routing\Route;
 
+use StaxWp\Gandalf\Core\Components\BuilderPicker;
+use StaxWp\Gandalf\Core\Components\YoutubeVideo;
 
 /**
  * Class Plugin
@@ -140,6 +142,66 @@ class Plugin extends Singleton {
 					$logo      = $logo_data[0];
 				}
 
+				$steps = [
+					new YoutubeVideo(
+						[
+							'title'       => __( 'Get started with Dollie', 'gandalf' ),
+							'description' => __( 'The Cloud Automation Platform to build, launch and sell WordPress cloud services under your own brand & domain.', 'gandalf' ),
+							'url'         => 'https://youtu.be/S5QC7jaoGCw',
+							'autoplay'    => false,
+						],
+						1
+					),
+					new YoutubeVideo(
+						[
+							'title'       => __( 'Get started with Stax', 'gandalf' ),
+							'description' => __( 'Import the most beautiful template you\'ve ever seen.', 'gandalf' ),
+							'url'         => 'https://www.youtube.com/watch?v=oygrmJFKYZY',
+							'autoplay'    => false,
+						],
+						2,
+					),
+					new BuilderPicker(
+						[
+							'title'       => __( 'Select your favourite Page Builder', 'gandalf' ),
+							'description' => __( 'We have awesome templates for all the popular page builders out there.', 'gandalf' ),
+							'builders'    => [
+								[
+									'type'  => 'wordpress',
+									'title' => __( 'Wordpress', 'gandalf' ),
+								],
+								[
+									'type'  => 'elementor',
+									'title' => __( 'Elementor', 'gandalf' ),
+								],
+								[
+									'type'  => 'beaver-builder',
+									'title' => __( 'Beaver Builder', 'gandalf' ),
+								],
+							],
+						],
+						0
+					),
+				];
+
+				$steps = apply_filters( 'gandalf/data/steps', $steps );
+
+				foreach ( $steps as $key => $step ) {
+					if ( ! $step instanceof Step ) {
+						unset( $steps[ $key ] );
+						continue;
+					}
+
+					$steps[ $key ] = $step->to_array();
+				}
+
+				usort(
+					$steps,
+					function ( $a, $b ) {
+						return $a['priority'] <=> $b['priority'];
+					}
+				);
+
 				// Do validations before passing them
 
 				wp_localize_script(
@@ -163,11 +225,9 @@ class Plugin extends Singleton {
 						'progress'      => [
 							'enabled' => true,
 							'full'    => false,
+							'numbers' => true,
 						],
-						'steps'         => apply_filters(
-							'gandalf/data/steps',
-							[]
-						),
+						'steps'         => $steps,
 						'no_steps_text' => apply_filters( 'gandalf/data/no_steps_text', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
 					]
 				);

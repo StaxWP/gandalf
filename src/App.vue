@@ -9,7 +9,7 @@
             :is="item.type"
             :key="key"
             :public_url="app.public_url"
-            :data="item"
+            :data="item.data"
           ></Component>
         </template>
       </template>
@@ -38,10 +38,8 @@
       :step="step"
       :total_steps="total_steps"
       :progress="app.progress"
-      :next="next"
       :btnNext="app.buttons.next"
       :btnPrev="app.buttons.prev"
-      @updateStep="setStep"
     />
   </div>
 </template>
@@ -85,29 +83,20 @@ export default {
       },
       step: 0,
       total_steps: 0,
-      next: {
-        show: true,
-        disabled: false,
-        tooltip: "",
-      },
     };
   },
   beforeMount() {
     this.app = window.gandalf_data;
     this.app.steps = this.app.steps.filter((item) => {
-      return (
-        item.type !== undefined &&
-        typeof item.type === "string" &&
-        this.$options.components[item.type] !== undefined
-      );
+      return this.$options.components[item.type] !== undefined;
     });
 
     this.total_steps = this.app.steps.length;
   },
-  methods: {
-    setStep(value) {
-      this.step = value;
-    },
+  mounted() {
+    this.emitter.on("update:step", (step) => {
+      this.step = step;
+    });
   },
 };
 </script>

@@ -18,7 +18,7 @@
       <div
         v-for="(builder, key) in data.builders"
         :key="key"
-        class="gan-flex gan-flex-wrap gan-flex-col gan-items-center gan-justify-center gan-p-6 gan-rounded gan-shadow-lg hover:gan-shadow-xl hover:gan-cursor-pointer gan-border-4 gan-border-transparent gan-transition gan-ease-linear hover:gan--translate-y-2"
+        class="gan-flex gan-flex-wrap gan-flex-col gan-items-center gan-justify-center gan-p-6 gan-rounded gan-shadow-lg hover:gan-shadow-xl hover:gan-cursor-pointer gan-bg-white gan-border-4 gan-border-transparent gan-transition gan-ease-linear hover:gan--translate-y-2"
         :class="{
           'gan-border-indigo-500 hover:gan-border-indigo-500':
             selected === builder.type,
@@ -55,10 +55,38 @@ export default {
       required: true,
     },
   },
+  watch: {
+    selected: function (newValue, oldValue) {
+      if (newValue === oldValue) {
+        return;
+      }
+
+      if (!newValue) {
+        this.disableNext();
+      } else {
+        this.emitter.emit("update:btn:next:disabled", false);
+        this.emitter.emit("update:btn:next:tooltip", "");
+      }
+    },
+  },
   data() {
     return {
       selected: "",
     };
+  },
+  mounted() {
+    if (!this.selected) {
+      this.disableNext();
+    }
+  },
+  methods: {
+    disableNext() {
+      this.emitter.emit("update:btn:next:disabled", true);
+      this.emitter.emit(
+        "update:btn:next:tooltip",
+        "Pick an option to continue!"
+      );
+    },
   },
 };
 </script>
