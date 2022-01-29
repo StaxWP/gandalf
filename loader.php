@@ -26,6 +26,7 @@ require_once 'bootstrap.php';
 \StaxWp\Gandalf\Core\Plugin::instance();
 
 // Demo data
+
 add_filter(
 	'gandalf/data/steps',
 	static function( $steps ) {
