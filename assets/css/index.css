@@ -767,6 +767,10 @@ select {
   width: 1.25rem;
 }
 
+.gan-w-1\/3 {
+  width: 33.333333%;
+}
+
 .gan-flex-1 {
   flex: 1 1 0%;
 }
@@ -781,6 +785,14 @@ select {
 
 .gan-grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gan-grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gan-grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .gan-flex-col {
@@ -1089,12 +1101,4 @@ select {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.disabled\:gan-cursor-not-allowed:disabled {
-  cursor: not-allowed;
-}
-
-.disabled\:gan-opacity-75:disabled {
-  opacity: 0.75;
 }

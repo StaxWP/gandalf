@@ -14,7 +14,7 @@
 </head>
 <body class="gan-bg-neutral-100">
 
-<div id="app"></div>
+<div id="gandalf-app"></div>
 
 <?php wp_footer(); ?>
 </body>

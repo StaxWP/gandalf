@@ -19,5 +19,9 @@
   "minimum-stability": "stable",
   "require-dev": {
     "pestphp/pest": "^1.21"
+  },
+  "require": {
+    "illuminate/validation": "^8.0",
+    "illuminate/translation": "^8.0"
   }
 }

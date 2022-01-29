@@ -7,9 +7,9 @@
     <div
       class="gan-w-full gan-text-center gan-text-neutral-300 gan-mt-10 gan-text-sm"
     >
-      Using Gandalf by
+      Powered by
       <a href="https://staxwp.com/gandalf" target="_blank" class="gan-underline"
-        >StaxWP</a
+        >Gandalf</a
       >
     </div>
   </main>

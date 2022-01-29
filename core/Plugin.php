@@ -142,49 +142,7 @@ class Plugin extends Singleton {
 					$logo      = $logo_data[0];
 				}
 
-				$steps = [
-					new YoutubeVideo(
-						[
-							'title'       => __( 'Get started with Dollie', 'gandalf' ),
-							'description' => __( 'The Cloud Automation Platform to build, launch and sell WordPress cloud services under your own brand & domain.', 'gandalf' ),
-							'url'         => 'https://youtu.be/S5QC7jaoGCw',
-							'autoplay'    => false,
-						],
-						1
-					),
-					new YoutubeVideo(
-						[
-							'title'       => __( 'Get started with Stax', 'gandalf' ),
-							'description' => __( 'Import the most beautiful template you\'ve ever seen.', 'gandalf' ),
-							'url'         => 'https://www.youtube.com/watch?v=oygrmJFKYZY',
-							'autoplay'    => false,
-						],
-						2,
-					),
-					new BuilderPicker(
-						[
-							'title'       => __( 'Select your favourite Page Builder', 'gandalf' ),
-							'description' => __( 'We have awesome templates for all the popular page builders out there.', 'gandalf' ),
-							'builders'    => [
-								[
-									'type'  => 'wordpress',
-									'title' => __( 'Wordpress', 'gandalf' ),
-								],
-								[
-									'type'  => 'elementor',
-									'title' => __( 'Elementor', 'gandalf' ),
-								],
-								[
-									'type'  => 'beaver-builder',
-									'title' => __( 'Beaver Builder', 'gandalf' ),
-								],
-							],
-						],
-						0
-					),
-				];
-
-				$steps = apply_filters( 'gandalf/data/steps', $steps );
+				$steps = apply_filters( 'gandalf/data/steps', [] );
 
 				foreach ( $steps as $key => $step ) {
 					if ( ! $step instanceof Step ) {
@@ -204,32 +162,51 @@ class Plugin extends Singleton {
 
 				// Do validations before passing them
 
+				$gandalf_data = [
+					'logo'     => apply_filters( 'gandalf/data/logo', $logo ),
+					'buttons'  => [
+						'next'    => apply_filters( 'gandalf/data/button/next', __( 'Continue', 'gandalf' ) ),
+						'prev'    => apply_filters( 'gandalf/data/button/prev', __( 'Back', 'gandalf' ) ),
+						'finish'  => apply_filters( 'gandalf/data/button/finish', __( 'Finish', 'gandalf' ) ),
+						'import'  => apply_filters( 'gandalf/data/button/import', __( 'Import', 'gandalf' ) ),
+						'install' => apply_filters( 'gandalf/data/button/install', __( 'Install', 'gandalf' ) ),
+						'view'    => apply_filters( 'gandalf/data/button/view', __( 'View', 'gandalf' ) ),
+						'exit'    => apply_filters( 'gandalf/data/button/exit', __( 'Back to Dashboard', 'gandalf' ) ),
+					],
+					'url'      => [
+						'public' => GDLF_URL,
+						'exit'   => apply_filters( 'gandalf/data/exit/url', get_admin_url() ),
+					],
+					'progress' => [
+						'enabled' => true,
+						'full'    => false,
+						'numbers' => true,
+					],
+					'steps'    => $steps,
+					'empty'    => [
+						'steps'    => apply_filters( 'gandalf/data/empty/steps', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
+						'builders' => apply_filters( 'gandalf/data/empty/builders', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
+					],
+				];
+
+				$extra_gandalf_data    = apply_filters( 'gandalf/extra/data', [] );
+				$required_gandalf_data = array_keys( $gandalf_data );
+
+				// Remove native fields from extra data
+				$extra_gandalf_data = array_filter(
+					$extra_gandalf_data,
+					static function ( $key ) use ( $required_gandalf_data ) {
+						return ! in_array( $key, $required_gandalf_data );
+					},
+					ARRAY_FILTER_USE_KEY
+				);
+
+				$gandalf_data = array_merge( $gandalf_data, $extra_gandalf_data );
+
 				wp_localize_script(
 					'gandalf-script',
 					'gandalf_data',
-					[
-						'logo'          => apply_filters( 'gandalf/data/logo', $logo ),
-						'exit'          => [
-							'url'  => apply_filters( 'gandalf/data/exit/url', get_admin_url() ),
-							'text' => apply_filters( 'gandalf/data/exit/text', __( 'Back to Dashboard', 'gandalf' ) ),
-						],
-						'buttons'       => [
-							'next'    => apply_filters( 'gandalf/data/button/next', __( 'Continue', 'gandalf' ) ),
-							'prev'    => apply_filters( 'gandalf/data/button/prev', __( 'Back', 'gandalf' ) ),
-							'finish'  => apply_filters( 'gandalf/data/button/finish', __( 'Finish', 'gandalf' ) ),
-							'import'  => apply_filters( 'gandalf/data/button/import', __( 'Import', 'gandalf' ) ),
-							'install' => apply_filters( 'gandalf/data/button/install', __( 'Install', 'gandalf' ) ),
-							'view'    => apply_filters( 'gandalf/data/button/view', __( 'View', 'gandalf' ) ),
-						],
-						'public_url'    => GDLF_URL,
-						'progress'      => [
-							'enabled' => true,
-							'full'    => false,
-							'numbers' => true,
-						],
-						'steps'         => $steps,
-						'no_steps_text' => apply_filters( 'gandalf/data/no_steps_text', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
-					]
+					$gandalf_data,
 				);
 			}
 		}

@@ -23,7 +23,7 @@
 
     <div class="gan-flex gan-items-center gan-justify-between gan-z-10">
       <button
-        v-if="step !== 0"
+        v-if="step.current !== 0"
         @click.stop="goPrev()"
         class="gan-inline-flex gan-items-center gan-cursor-pointer gan-bg-gradient-to-r gan-from-neutral-200 gan-to-neutral-100 hover:gan-to-neutral-200 gan-text-neutral-600 gan-rounded-full gan-px-6 gan-py-3"
       >
@@ -45,7 +45,7 @@
             </g>
           </svg>
         </span>
-        {{ btnPrev }}
+        {{ buttons.prev }}
       </button>
 
       <div v-else></div>
@@ -53,7 +53,7 @@
       <div v-if="progress.numbers"></div>
 
       <button
-        v-if="next.show && total_steps !== step"
+        v-if="next.show && step.total !== step.current"
         v-tooltip.left="next.tooltip"
         @click.stop="goNext()"
         class="gan-inline-flex gan-items-center gan-cursor-pointer gan-bg-gradient-to-r gan-from-indigo-600 gan-to-blue-600 hover:gan-to-indigo-600 gan-text-white gan-rounded-full gan-px-6 gan-py-3"
@@ -61,7 +61,7 @@
           'gan-opacity-75 gan-cursor-not-allowed': next.disabled,
         }"
       >
-        {{ btnNext }}
+        {{ buttons.next }}
         <span class="gan-block gan-ml-2 gan-w-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -88,68 +88,28 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  props: {
-    step: {
-      type: Number,
-      required: true,
-    },
-    total_steps: {
-      type: Number,
-      required: true,
-    },
-    progress: {
-      type: Object,
-      default: () => ({
-        enabled: false,
-        full: false,
-        numbers: false,
-      }),
-    },
-    btnNext: {
-      type: String,
-      required: true,
-    },
-    btnPrev: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      next: {
-        show: true,
-        disabled: false,
-        tooltip: "",
-      },
-    };
-  },
   computed: {
+    ...mapState({
+      step: (state) => state.step,
+      next: (state) => state.next,
+      buttons: (state) => state.app.buttons,
+      progress: (state) => state.app.progress,
+    }),
     progressBar: function () {
-      return Math.round((this.step / this.total_steps) * 100);
+      return Math.round((this.step.current / this.step.total) * 100);
     },
-  },
-  created() {
-    this.emitter.on("update:btn:next:show", (show) => {
-      this.next.show = show;
-    });
-    this.emitter.on("update:btn:next:disabled", (disabled) => {
-      this.next.disabled = disabled;
-    });
-    this.emitter.on("update:btn:next:tooltip", (tooltip) => {
-      this.next.tooltip = tooltip;
-    });
   },
   methods: {
     goPrev() {
-      const prevStep = this.step - 1;
-      this.emitter.emit("update:step", prevStep);
+      this.$store.commit("DECREMENT_STEP");
     },
     goNext() {
       if (this.next.disabled) return;
 
-      const nextStep = this.step + 1;
-      this.emitter.emit("update:step", nextStep);
+      this.$store.commit("INCREMENT_STEP");
     },
   },
 };

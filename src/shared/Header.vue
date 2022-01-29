@@ -102,11 +102,11 @@
       </a>
     </div>
     <div
-      v-if="exit.url"
+      v-if="exit_url"
       class="gan-w-20 gan-h-20 gan-border-l gan-border-neutral-200 gan-p-6"
     >
       <a
-        :href="exit.url"
+        :href="exit_url"
         class="gan-block gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
       >
         <svg
@@ -125,19 +125,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  props: {
-    logo: {
-      type: String,
-      default: "",
-    },
-    exit: {
-      type: Object,
-      default: () => ({
-        url: "",
-        text: "",
-      }),
-    },
+  computed: {
+    ...mapState({
+      logo: (state) => state.app.logo,
+      exit_url: (state) => state.app.url.exit,
+    }),
   },
 };
 </script>

@@ -42,10 +42,6 @@ export default {
         autoplay: false,
       }),
     },
-    public_url: {
-      type: String,
-      required: true,
-    },
   },
   methods: {
     onReady() {

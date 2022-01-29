@@ -24,3 +24,36 @@ define( 'GDLF_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 require_once 'bootstrap.php';
 
 \StaxWp\Gandalf\Core\Plugin::instance();
+
+add_filter(
+	'gandalf/data/steps',
+	static function( $steps ) {
+		return [
+			new \StaxWp\Gandalf\Core\Components\YoutubeVideo(
+				[
+					'title'       => __( 'Get started with Dollie', 'gandalf' ),
+					'description' => __( 'The Cloud Automation Platform to build, launch and sell WordPress cloud services under your own brand & domain.', 'gandalf' ),
+					'url'         => 'https://www.youtube.com/watch?v=S5QC7jaoGCw',
+					'autoplay'    => false,
+				],
+				1
+			),
+			new \StaxWp\Gandalf\Core\Components\YoutubeVideo(
+				[
+					'title'       => __( 'Get started with Stax', 'gandalf' ),
+					'description' => __( 'Import the most beautiful template you\'ve ever seen.', 'gandalf' ),
+					'url'         => 'https://www.youtube.com/watch?v=oygrmJFKYZY',
+					'autoplay'    => false,
+				],
+				2,
+			),
+			new \StaxWp\Gandalf\Core\Components\BuilderPicker(
+				[
+					'title'       => __( 'Select your favourite Page Builder', 'gandalf' ),
+					'description' => __( 'We have awesome templates for all the popular page builders out there.', 'gandalf' ),
+				],
+				0
+			),
+		];
+	}
+);
