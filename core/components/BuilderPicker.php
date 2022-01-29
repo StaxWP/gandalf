@@ -22,16 +22,19 @@ final class BuilderPicker extends Step {
 
 		$builders = [
 			[
-				'type'  => 'wordpress',
-				'title' => __( 'Wordpress', 'gandalf' ),
+				'type'     => 'wordpress',
+				'title'    => __( 'Wordpress', 'gandalf' ),
+				'selected' => false,
 			],
 			[
-				'type'  => 'elementor',
-				'title' => __( 'Elementor', 'gandalf' ),
+				'type'     => 'elementor',
+				'title'    => __( 'Elementor', 'gandalf' ),
+				'selected' => false,
 			],
 			[
-				'type'  => 'beaver-builder',
-				'title' => __( 'Beaver Builder', 'gandalf' ),
+				'type'     => 'beaver-builder',
+				'title'    => __( 'Beaver Builder', 'gandalf' ),
+				'selected' => false,
 			],
 		];
 
@@ -52,12 +55,13 @@ final class BuilderPicker extends Step {
 
 		$this->add_validation_rules(
 			[
-				'title'            => 'required|string|nullable',
-				'description'      => 'required|string|nullable',
-				'only'             => 'sometimes|required|array|min:1',
-				'builders'         => 'required|array',
-				'builders.*.type'  => 'required|string|in:wordpress,elementor,beaver-builder',
-				'builders.*.title' => 'required|string|min:1',
+				'title'               => 'required|string|nullable',
+				'description'         => 'required|string|nullable',
+				'only'                => 'sometimes|required|array|min:1',
+				'builders'            => 'required|array',
+				'builders.*.type'     => 'required|string|in:wordpress,elementor,beaver-builder',
+				'builders.*.title'    => 'required|string|min:1',
+				'builders.*.selected' => 'required|boolean',
 			]
 		);
 	}

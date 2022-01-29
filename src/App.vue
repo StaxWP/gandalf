@@ -45,6 +45,7 @@ import Content from "./shared/Content.vue";
 
 import YoutubeVideo from "./components/YoutubeVideo.vue";
 import BuilderPicker from "./components/BuilderPicker.vue";
+import BuilderTemplates from "./components/BuilderTemplates.vue";
 
 export default {
   components: {
@@ -53,6 +54,7 @@ export default {
     Content,
     YoutubeVideo,
     BuilderPicker,
+    BuilderTemplates,
   },
   computed: {
     ...mapState({

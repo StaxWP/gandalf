@@ -3,6 +3,7 @@
     class="gan-w-full gan-flex gan-justify-between gan-bg-white gan-shadow-md gan-z-20"
   >
     <div
+      v-if="header.show.logo"
       class="gan-flex gan-items-center gan-h-20 gan-border-r gan-border-neutral-200"
       :class="{ 'gan-p-2': !logo, 'gan-p-6': logo }"
     >
@@ -101,25 +102,101 @@
         </svg>
       </a>
     </div>
-    <div
-      v-if="exit_url"
-      class="gan-w-20 gan-h-20 gan-border-l gan-border-neutral-200 gan-p-6"
-    >
-      <a
-        :href="exit_url"
-        class="gan-block gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
+    <div v-else></div>
+
+    <div class="gan-h-20 gan-flex gan-items-center">
+      <div
+        v-if="header.show.builders && builders.length"
+        class="gan-relative gan-h-full gan-border-l gan-border-neutral-200 gan-p-6"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 48 48"
-          class="gan-fill-current"
+        <button
+          @click.stop="showBuilders"
+          type="button"
+          class="gan-flex gan-items-center gan-justify-between gan-h-full gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
         >
-          <path
-            d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"
-          />
-          <path d="M0 0h48v48h-48z" fill="none" />
-        </svg>
-      </a>
+          <span class="gan-flex gan-items-center gan-mr-4">
+            <img
+              :src="
+                url.public +
+                'assets' +
+                require(`../assets/svg/${$store.getters.currentStep.type}.svg`)
+              "
+              class="gan-inline-block gan-mr-2 gan-w-6 gan-h-6"
+            />
+
+            {{ $store.getters.currentStep.title }}
+          </span>
+          <span class="gan-w-5">
+            <svg
+              v-if="!showDropdown"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
+              class="gan-fill-current"
+            >
+              <path
+                d="M14.83 16.42l9.17 9.17 9.17-9.17 2.83 2.83-12 12-12-12z"
+              />
+              <path d="M0-.75h48v48h-48z" fill="none" />
+            </svg>
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
+              class="gan-fill-current"
+            >
+              <path
+                d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"
+              />
+              <path d="M0 0h48v48h-48z" fill="none" />
+            </svg>
+          </span>
+        </button>
+
+        <div
+          v-if="showDropdown"
+          class="gan-absolute gan-left-0 gan-top-full gan-w-full gan-bg-white gan-border-t gan-border-t-neutral-100 gan-shadow-md"
+        >
+          <ul class="gan-divide-y gan-divide-neutral-100">
+            <li v-for="(builder, key) in builders" :key="key">
+              <span
+                @click.stop="setBuilder(builder.type)"
+                class="gan-flex gan-items-center gan-px-6 gan-py-3 gan-cursor-pointer hover:gan-bg-neutral-100"
+              >
+                <img
+                  :src="
+                    url.public +
+                    'assets' +
+                    require(`../assets/svg/${builder.type}.svg`)
+                  "
+                  class="gan-inline-block gan-mr-2 gan-w-6 gan-h-6"
+                />
+
+                {{ builder.title }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        v-if="header.show.exit && exit_url"
+        class="gan-w-20 gan-h-full gan-border-l gan-border-neutral-200 gan-p-6"
+      >
+        <a
+          :href="exit_url"
+          class="gan-block gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            class="gan-fill-current"
+          >
+            <path
+              d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"
+            />
+            <path d="M0 0h48v48h-48z" fill="none" />
+          </svg>
+        </a>
+      </div>
     </div>
   </header>
 </template>
@@ -130,9 +207,26 @@ import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
+      url: (state) => state.app.url,
+      header: (state) => state.header,
       logo: (state) => state.app.logo,
       exit_url: (state) => state.app.url.exit,
+      builders: (state) => state.builders,
     }),
+  },
+  data() {
+    return {
+      showDropdown: false,
+    };
+  },
+  methods: {
+    showBuilders() {
+      this.showDropdown = !this.showDropdown;
+    },
+    setBuilder(builder) {
+      this.$store.commit("SET_CURRENT_BUILDER", builder);
+      this.showDropdown = false;
+    },
   },
 };
 </script>

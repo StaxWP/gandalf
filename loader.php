@@ -38,7 +38,7 @@ add_filter(
 					'url'         => 'https://www.youtube.com/watch?v=S5QC7jaoGCw',
 					'autoplay'    => false,
 				],
-				1
+				0
 			),
 			new \StaxWp\Gandalf\Core\Components\YoutubeVideo(
 				[
@@ -47,14 +47,25 @@ add_filter(
 					'url'         => 'https://www.youtube.com/watch?v=oygrmJFKYZY',
 					'autoplay'    => false,
 				],
-				2,
+				1,
 			),
 			new \StaxWp\Gandalf\Core\Components\BuilderPicker(
 				[
 					'title'       => __( 'Select your favourite Page Builder', 'gandalf' ),
 					'description' => __( 'We have awesome templates for all the popular page builders out there.', 'gandalf' ),
 				],
-				0
+				2
+			),
+			new \StaxWp\Gandalf\Core\Components\BuilderTemplates(
+				[
+					'title'       => __( 'What type of website are you building?', 'gandalf' ),
+					'description' => __( 'Find the template you need to start your new business.', 'gandalf' ),
+					'search'      => true,
+					'menu'        => true,
+					'sort'        => true,
+					'source'      => 'https://staxwp.com',
+				],
+				2
 			),
 		];
 	}
