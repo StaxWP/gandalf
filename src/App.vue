@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="Object.keys(app).length"
-    class="gan-flex gan-flex-col gan-h-screen gan-bg-neutral-100"
+    class="gan-flex gan-flex-col gan-h-screen gan-bg-neutral-100 gan-font-sans"
   >
     <Header />
     <Content>

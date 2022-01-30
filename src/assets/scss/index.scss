@@ -9,8 +9,12 @@ body {
   @apply gan-fixed gan-w-full gan-h-full gan-top-0 gan-left-0 gan-z-999999;
 }
 
-#gandalf-app .gan-yt-video iframe {
-  @apply gan-border-8 gan-border-white gan-rounded gan-shadow-xl;
+.gan-yt-video iframe {
+  @apply gan-border-solid gan-border-8 gan-border-white gan-rounded gan-shadow-xl;
+}
+
+.gan-search-box {
+  @apply gan-w-2/3 gan-pr-8 gan-pl-12 gan-py-4 gan-border-transparent gan-rounded gan-shadow-lg hover:gan-shadow-xl focus:gan-shadow-xl gan-text-sm !important;
 }
 
 .v-popper--theme-tooltip {

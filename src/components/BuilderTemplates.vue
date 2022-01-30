@@ -10,7 +10,7 @@
         <input
           type="text"
           v-model="search"
-          class="gan-w-2/3 gan-pr-8 gan-pl-12 gan-py-4 gan-border-transparent gan-rounded gan-shadow-lg hover:gan-shadow-xl focus:gan-shadow-xl gan-text-sm"
+          class="gan-search-box"
           :placeholder="text.placeholder.search"
         />
         <span

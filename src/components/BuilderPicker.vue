@@ -6,23 +6,28 @@
     </div>
     <div
       v-if="Object.keys(builders).length"
-      class="gan-flex gan-justify-center gan-gap-4 gan-mx-32"
+      class="gan-flex gan-justify-center gan-gap-4"
     >
       <div
         v-for="(builder, key) in builders"
         :key="key"
-        class="gan-w-1/3 gan-flex gan-flex-wrap gan-flex-col gan-items-center gan-justify-center gan-p-6 gan-rounded gan-shadow-lg hover:gan-shadow-xl hover:gan-cursor-pointer gan-bg-white gan-border-4 gan-border-transparent gan-transition gan-ease-linear hover:gan--translate-y-2"
+        class="gan-w-56 gan-flex gan-flex-wrap gan-flex-col gan-items-center gan-justify-center gan-p-6 gan-rounded gan-shadow-lg hover:gan-shadow-xl hover:gan-cursor-pointer gan-bg-white gan-transition gan-ease-linear hover:gan--translate-y-2"
         :class="{
-          'gan-border-indigo-500 hover:gan-border-indigo-500': builder.selected,
+          'gan-bg-gradient-to-tr gan-from-indigo-600 gan-to-indigo-500 gan-text-white gan-shadow-indigo-200 hover:gan-shadow-indigo-200':
+            builder.selected,
         }"
         @click.stop="setBuilder(builder.type)"
       >
-        <img
-          :src="
-            url.public + 'assets' + require(`../assets/svg/${builder.type}.svg`)
-          "
-          class="gan-block gan-w-20 gan-h-20"
-        />
+        <span class="gan-p-1 gan-bg-white gan-rounded-full gan-overflow-hidden">
+          <img
+            :src="
+              url.public +
+              'assets' +
+              require(`../assets/svg/${builder.type}.svg`)
+            "
+            class="gan-block gan-w-20 gan-h-20"
+          />
+        </span>
 
         <h4 class="gan-mt-6">{{ builder.title }}</h4>
       </div>

@@ -16,7 +16,7 @@
       <button
         v-if="step.current !== 0"
         @click.stop="goPrev()"
-        class="gan-inline-flex gan-items-center gan-cursor-pointer gan-bg-gradient-to-r gan-from-neutral-200 gan-to-neutral-100 hover:gan-to-neutral-200 gan-text-neutral-600 gan-rounded-full gan-px-6 gan-py-3"
+        class="gan-inline-flex gan-items-center gan-bg-neutral-100 hover:gan-bg-neutral-200 gan-text-neutral-600 gan-rounded-full gan-px-6 gan-py-3 gan-transition-colors gan-duration-200 gan-ease-in"
       >
         <span class="gan-block gan-mr-2 gan-w-5">
           <svg
@@ -47,7 +47,7 @@
         v-if="next.show && step.total !== step.current"
         v-tooltip.left="next.tooltip"
         @click.stop="goNext()"
-        class="gan-inline-flex gan-items-center gan-cursor-pointer gan-bg-gradient-to-r gan-from-indigo-600 gan-to-blue-600 hover:gan-to-indigo-600 gan-text-white gan-rounded-full gan-px-6 gan-py-3"
+        class="gan-inline-flex gan-items-center gan-bg-indigo-600 hover:gan-bg-indigo-700 gan-text-white gan-rounded-full gan-px-6 gan-py-3 gan-transition gan-duration-200 gan-ease-in gan-shadow-md hover:gan-shadow-lg gan-shadow-indigo-100 hover:gan-shadow-indigo-200"
         :class="{
           'gan-opacity-75 gan-cursor-not-allowed': next.disabled,
         }"

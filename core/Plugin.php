@@ -26,8 +26,8 @@ class Plugin extends Singleton {
 	public function __construct( array $data = [] ) {
 		parent::__construct();
 
-		add_action( 'admin_menu', [ $this, 'register_menu' ], 10 );
-		add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
+		add_action( 'admin_menu', [ $this, 'register_menu' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ], 9999 );
 	}
 
 	/**
