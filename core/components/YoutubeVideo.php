@@ -21,8 +21,8 @@ final class YoutubeVideo extends Step {
 
 		$this->add_validation_rules(
 			[
-				'title'       => 'required|string|nullable',
-				'description' => 'required|string|nullable',
+				'title'       => 'sometimes|required|string|nullable',
+				'description' => 'sometimes|required|string|nullable',
 				'url'         => [ 'required', 'string', 'regex:/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/watch\?v\=\w+$/' ],
 				'autoplay'    => 'required|boolean',
 			]

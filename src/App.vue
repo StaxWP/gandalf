@@ -24,11 +24,11 @@
         </h3>
 
         <a
-          v-if="app.url.exit && app.buttons.exit"
+          v-if="app.url.exit && app.text.button.exit"
           :href="app.url.exit"
           class="gan-inline-block gan-mt-6 gan-px-6 gan-py-3 gan-bg-gradient-to-r gan-from-neutral-800 gan-to-neutral-700 gan-text-white gan-rounded hover:gan-to-neutral-800 hover:gan-shadow-xl"
         >
-          {{ app.buttons.exit }}
+          {{ app.text.button.exit }}
         </a>
       </div>
     </Content>

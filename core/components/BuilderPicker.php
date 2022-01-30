@@ -55,8 +55,8 @@ final class BuilderPicker extends Step {
 
 		$this->add_validation_rules(
 			[
-				'title'               => 'required|string|nullable',
-				'description'         => 'required|string|nullable',
+				'title'               => 'string|nullable',
+				'description'         => 'string|nullable',
 				'only'                => 'sometimes|required|array|min:1',
 				'builders'            => 'required|array',
 				'builders.*.type'     => 'required|string|in:wordpress,elementor,beaver-builder',

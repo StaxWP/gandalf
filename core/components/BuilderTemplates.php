@@ -21,8 +21,8 @@ final class BuilderTemplates extends Step {
 
 		$this->add_validation_rules(
 			[
-				'title'       => 'required|string|nullable',
-				'description' => 'required|string|nullable',
+				'title'       => 'sometimes|required|string|nullable',
+				'description' => 'sometimes|required|string|nullable',
 				'builder'     => 'string|nullable',
 				'search'      => 'required|boolean',
 				'menu'        => 'required|boolean',

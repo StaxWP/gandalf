@@ -1,10 +1,7 @@
 <template>
   <div class="gan-w-1/2 gan-flex gan-flex-col gan-flex-wrap gan-justify-center">
     <div v-if="data.title || data.description" class="gan-mb-10">
-      <h2
-        v-if="data.title"
-        class="gan-text-center gan-font-black gan-text-4xl gan-tracking-wide"
-      >
+      <h2 v-if="data.title" class="gan-text-center gan-font-black gan-text-3xl">
         {{ data.title }}
       </h2>
       <div
@@ -14,6 +11,34 @@
         {{ data.description }}
       </div>
     </div>
+
+    <div v-if="data.search" class="gan-text-center">
+      <span class="gan-relative">
+        <input
+          type="text"
+          v-model="search"
+          class="gan-w-2/3 gan-pr-8 gan-pl-12 gan-py-4 gan-border-transparent gan-rounded gan-shadow-lg hover:gan-shadow-xl focus:gan-shadow-xl gan-text-sm"
+          :placeholder="text.placeholder.search"
+        />
+        <span
+          class="gan-absolute gan-h-full gan-left-0 gan-top-0 gan-pl-4 gan-pr-2 gan-flex gan-items-center gan-text-neutral-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="enable-background: new 0 0 512 512"
+            version="1.1"
+            viewBox="0 0 512 512"
+            xml:space="preserve"
+            class="gan-w-5 gan-fill-current"
+          >
+            <path
+              d="M344.5,298c15-23.6,23.8-51.6,23.8-81.7c0-84.1-68.1-152.3-152.1-152.3C132.1,64,64,132.2,64,216.3  c0,84.1,68.1,152.3,152.1,152.3c30.5,0,58.9-9,82.7-24.4l6.9-4.8L414.3,448l33.7-34.3L339.5,305.1L344.5,298z M301.4,131.2  c22.7,22.7,35.2,52.9,35.2,85c0,32.1-12.5,62.3-35.2,85c-22.7,22.7-52.9,35.2-85,35.2c-32.1,0-62.3-12.5-85-35.2  c-22.7-22.7-35.2-52.9-35.2-85c0-32.1,12.5-62.3,35.2-85c22.7-22.7,52.9-35.2,85-35.2C248.5,96,278.7,108.5,301.4,131.2z"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -21,6 +46,11 @@
 import { mapState } from "vuex";
 
 export default {
+  computed: {
+    ...mapState({
+      text: (state) => state.app.text,
+    }),
+  },
   props: {
     data: {
       type: Object,
@@ -31,6 +61,11 @@ export default {
         builders: () => ({}),
       }),
     },
+  },
+  data() {
+    return {
+      search: "",
+    };
   },
   beforeMount() {
     this.$store.commit("SET_SHOW_HEADER_BUILDERS", true);

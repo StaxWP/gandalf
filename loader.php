@@ -58,12 +58,11 @@ add_filter(
 			),
 			new \StaxWp\Gandalf\Core\Components\BuilderTemplates(
 				[
-					'title'       => __( 'What type of website are you building?', 'gandalf' ),
-					'description' => __( 'Find the template you need to start your new business.', 'gandalf' ),
-					'search'      => true,
-					'menu'        => true,
-					'sort'        => true,
-					'source'      => 'https://staxwp.com',
+					'title'  => __( 'What type of website are you building?', 'gandalf' ),
+					'search' => true,
+					'menu'   => true,
+					'sort'   => true,
+					'source' => 'https://staxwp.com',
 				],
 				2
 			),

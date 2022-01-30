@@ -1,10 +1,7 @@
 <template>
   <div class="gan-w-1/2 gan-flex gan-flex-col gan-flex-wrap gan-justify-center">
     <div v-if="data.title || data.description" class="gan-mb-10">
-      <h2
-        v-if="data.title"
-        class="gan-text-center gan-font-black gan-text-4xl gan-tracking-wide"
-      >
+      <h2 v-if="data.title" class="gan-text-center gan-font-black gan-text-3xl">
         {{ data.title }}
       </h2>
       <div

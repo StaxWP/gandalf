@@ -1,22 +1,13 @@
 <template>
   <footer
-    class="gan-relative gan-w-full gan-bg-white gan-py-4 gan-px-20 gan-shadow-top gan-z-0"
-    :class="{ 'gan-pt-6': progress.enabled && !progress.full }"
+    class="gan-relative gan-w-full gan-bg-white gan-py-4 gan-px-20 gan-shadow-top gan-z-0 gan-pt-6"
   >
     <div
-      v-if="progress.enabled"
-      class="gan-absolute gan-top-0 gan-left-0 gan-w-full"
-      :class="{
-        'gan-bg-white gan-h-full gan--z-1': progress.full,
-        'gan-bg-gray-100 gan-h-2': !progress.full,
-      }"
+      v-if="progress.bar"
+      class="gan-absolute gan-top-0 gan-left-0 gan-w-full gan-bg-gray-100 gan-h-2"
     >
       <div
-        class="gan-transition-width gan-ease-linear gan-duration-500"
-        :class="{
-          'gan-bg-green-500 gan-h-full': progress.full,
-          'gan-bg-green-500 gan-h-2': !progress.full,
-        }"
+        class="gan-transition-width gan-ease-linear gan-duration-500 gan-bg-green-500 gan-h-2"
         :style="`width: ${progressBar}%`"
       ></div>
     </div>
@@ -45,7 +36,7 @@
             </g>
           </svg>
         </span>
-        {{ buttons.prev }}
+        {{ text.button.prev }}
       </button>
 
       <div v-else></div>
@@ -61,7 +52,7 @@
           'gan-opacity-75 gan-cursor-not-allowed': next.disabled,
         }"
       >
-        {{ buttons.next }}
+        {{ text.button.next }}
         <span class="gan-block gan-ml-2 gan-w-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -95,10 +86,12 @@ export default {
     ...mapState({
       step: (state) => state.step,
       next: (state) => state.next,
-      buttons: (state) => state.app.buttons,
+      text: (state) => state.app.text,
       progress: (state) => state.app.progress,
     }),
     progressBar: function () {
+      if (!this.progress.bar) return;
+
       return Math.round((this.step.current / this.step.total) * 100);
     },
   },

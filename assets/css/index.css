@@ -807,6 +807,10 @@ select {
   width: 0.5rem;
 }
 
+.gan-w-2\/3 {
+  width: 66.666667%;
+}
+
 .gan-flex-1 {
   flex: 1 1 0%;
 }
@@ -898,6 +902,11 @@ select {
 .gan-border-neutral-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 229 229 / var(--tw-border-opacity));
+}
+
+.gan-border-neutral-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(212 212 212 / var(--tw-border-opacity));
 }
 
 .gan-border-t-neutral-100 {
@@ -998,8 +1007,43 @@ select {
   padding-right: 5rem;
 }
 
+.gan-px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.gan-px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.gan-px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .gan-pt-6 {
   padding-top: 1.5rem;
+}
+
+.gan-pl-12 {
+  padding-left: 3rem;
+}
+
+.gan-pl-10 {
+  padding-left: 2.5rem;
+}
+
+.gan-pr-8 {
+  padding-right: 2rem;
+}
+
+.gan-pl-4 {
+  padding-left: 1rem;
+}
+
+.gan-pr-2 {
+  padding-right: 0.5rem;
 }
 
 .gan-text-center {
@@ -1014,6 +1058,11 @@ select {
 .gan-text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.gan-text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .gan-font-black {
@@ -1151,6 +1200,12 @@ select {
 }
 
 .hover\:gan-shadow-xl:hover {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:gan-shadow-xl:focus {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);

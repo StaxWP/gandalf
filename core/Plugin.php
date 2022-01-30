@@ -164,28 +164,32 @@ class Plugin extends Singleton {
 
 				$gandalf_data = [
 					'logo'     => apply_filters( 'gandalf/data/logo', $logo ),
-					'buttons'  => [
-						'next'    => apply_filters( 'gandalf/data/button/next', __( 'Continue', 'gandalf' ) ),
-						'prev'    => apply_filters( 'gandalf/data/button/prev', __( 'Back', 'gandalf' ) ),
-						'finish'  => apply_filters( 'gandalf/data/button/finish', __( 'Finish', 'gandalf' ) ),
-						'import'  => apply_filters( 'gandalf/data/button/import', __( 'Import', 'gandalf' ) ),
-						'install' => apply_filters( 'gandalf/data/button/install', __( 'Install', 'gandalf' ) ),
-						'view'    => apply_filters( 'gandalf/data/button/view', __( 'View', 'gandalf' ) ),
-						'exit'    => apply_filters( 'gandalf/data/button/exit', __( 'Back to Dashboard', 'gandalf' ) ),
-					],
 					'url'      => [
 						'public' => GDLF_URL,
 						'exit'   => apply_filters( 'gandalf/data/exit/url', get_admin_url() ),
 					],
 					'progress' => [
-						'enabled' => true,
-						'full'    => false,
+						'bar'     => true,
 						'numbers' => true,
 					],
 					'steps'    => $steps,
-					'empty'    => [
-						'steps'    => apply_filters( 'gandalf/data/empty/steps', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
-						'builders' => apply_filters( 'gandalf/data/empty/builders', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
+					'text'     => [
+						'button'      => [
+							'next'    => apply_filters( 'gandalf/data/text/button/next', __( 'Continue', 'gandalf' ) ),
+							'prev'    => apply_filters( 'gandalf/data/text/button/prev', __( 'Back', 'gandalf' ) ),
+							'finish'  => apply_filters( 'gandalf/data/text/button/finish', __( 'Finish', 'gandalf' ) ),
+							'import'  => apply_filters( 'gandalf/data/text/button/import', __( 'Import', 'gandalf' ) ),
+							'install' => apply_filters( 'gandalf/data/text/button/install', __( 'Install', 'gandalf' ) ),
+							'view'    => apply_filters( 'gandalf/data/text/button/view', __( 'View', 'gandalf' ) ),
+							'exit'    => apply_filters( 'gandalf/data/text/button/exit', __( 'Back to Dashboard', 'gandalf' ) ),
+						],
+						'empty'       => [
+							'steps'    => apply_filters( 'gandalf/data/text/empty/steps', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
+							'builders' => apply_filters( 'gandalf/data/text/empty/builders', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
+						],
+						'placeholder' => [
+							'search' => apply_filters( 'gandalf/data/text/placeholder/search', __( 'Find the perfect Template', 'gandalf' ) ),
+						],
 					],
 				];
 

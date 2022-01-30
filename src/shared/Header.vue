@@ -107,10 +107,11 @@
     <div class="gan-h-20 gan-flex gan-items-center">
       <div
         v-if="header.show.builders && builders.length"
+        @mouseover="showDropdown = true"
+        @mouseleave="showDropdown = false"
         class="gan-relative gan-h-full gan-border-l gan-border-neutral-200 gan-p-6"
       >
         <button
-          @click.stop="showBuilders"
           type="button"
           class="gan-flex gan-items-center gan-justify-between gan-h-full gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
         >
@@ -220,9 +221,6 @@ export default {
     };
   },
   methods: {
-    showBuilders() {
-      this.showDropdown = !this.showDropdown;
-    },
     setBuilder(builder) {
       this.$store.commit("SET_CURRENT_BUILDER", builder);
       this.showDropdown = false;
