@@ -1,5 +1,8 @@
 <template>
-  <h2 v-if="text" class="gan-text-center gan-font-black gan-text-3xl">
+  <h2
+    v-if="text"
+    class="gan-text-center gan-font-black gan-text-3xl dark:gan-text-white"
+  >
     {{ text }}
   </h2>
 </template>

@@ -11,7 +11,7 @@
       height="446"
       @ready="onReady"
       ref="youtube"
-      class="gan-mx-auto gan-yt-video"
+      class="gan-mx-auto gan-yt-video gan-bg-white dark:gan-bg-neutral-900 gan-rounded"
     />
   </div>
 </template>

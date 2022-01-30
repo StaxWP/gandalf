@@ -1,6 +1,7 @@
 module.exports = {
   prefix: "gan-",
   content: ["./src/**/*.{js,jsx,ts,tsx,vue}"],
+  darkMode: "class",
   theme: {
     screens: {
       sm: "640px",

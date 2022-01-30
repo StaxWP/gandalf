@@ -13,7 +13,7 @@
         :key="key"
         class="gan-w-56 gan-flex gan-flex-wrap gan-flex-col gan-items-center gan-justify-center gan-p-6 gan-rounded gan-shadow-lg hover:gan-shadow-xl hover:gan-cursor-pointer gan-bg-white gan-transition gan-ease-linear hover:gan--translate-y-2"
         :class="{
-          'gan-bg-gradient-to-tr gan-from-indigo-600 gan-to-indigo-500 gan-text-white gan-shadow-indigo-200 hover:gan-shadow-indigo-200':
+          'gan-bg-gradient-to-tr gan-from-indigo-600 gan-to-indigo-500 gan-text-white gan-shadow-indigo-200 hover:gan-shadow-indigo-200 dark:gan-shadow-none dark:hover:gan-shadow-none':
             builder.selected,
         }"
         @click.stop="setBuilder(builder.type)"

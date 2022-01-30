@@ -1,10 +1,10 @@
 <template>
   <header
-    class="gan-w-full gan-flex gan-justify-between gan-bg-white gan-shadow-md gan-z-20"
+    class="gan-w-full gan-flex gan-justify-between gan-bg-white dark:gan-bg-neutral-900 gan-shadow-md gan-z-20"
   >
     <div
       v-if="header.show.logo"
-      class="gan-flex gan-items-center gan-h-20 gan-border-r gan-border-neutral-200"
+      class="gan-flex gan-items-center gan-h-20 gan-border-r gan-border-neutral-200 dark:gan-border-neutral-800"
       :class="{ 'gan-p-2': !logo, 'gan-p-6': logo }"
     >
       <a
@@ -113,21 +113,25 @@
         v-if="header.show.builders && builders.length"
         @mouseover="showDropdown = true"
         @mouseleave="showDropdown = false"
-        class="gan-relative gan-h-full gan-border-l gan-border-neutral-200 gan-p-6"
+        class="gan-relative gan-h-full gan-border-l gan-border-neutral-200 dark:gan-border-neutral-800 gan-p-6"
       >
         <button
           type="button"
-          class="gan-flex gan-items-center gan-justify-between gan-h-full gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
+          class="gan-flex gan-items-center gan-justify-between gan-h-full gan-text-neutral-500 hover:gan-text-neutral-800 dark:gan-text-neutral-400 dark:hover:gan-text-white gan-transition-colors gan-duration-200 gan-ease-in"
         >
           <span class="gan-flex gan-items-center gan-mr-4">
-            <img
-              :src="
-                url.public +
-                'assets' +
-                require(`../assets/svg/${$store.getters.currentStep.type}.svg`)
-              "
-              class="gan-inline-block gan-mr-2 gan-w-6 gan-h-6"
-            />
+            <span
+              class="gan-p-1 gan-bg-white dark:gan-bg-neutral-300 gan-mr-2 gan-rounded-full"
+            >
+              <img
+                :src="
+                  url.public +
+                  'assets' +
+                  require(`../assets/svg/${$store.getters.currentStep.type}.svg`)
+                "
+                class="gan-inline-block gan-w-6 gan-h-6"
+              />
+            </span>
 
             {{ $store.getters.currentStep.title }}
           </span>
@@ -159,22 +163,28 @@
 
         <div
           v-if="showDropdown"
-          class="gan-absolute gan-left-0 gan-top-full gan-w-full gan-bg-white gan-border-t gan-border-t-neutral-100 gan-shadow-md"
+          class="gan-absolute gan-left-0 gan-top-full gan-w-full gan-bg-white gan-border-t gan-border-t-neutral-100 dark:gan-bg-neutral-900 dark:gan-text-neutral-400 dark:gan-border-t-neutral-800 gan-shadow-md dark:gan-shadow-black"
         >
-          <ul class="gan-divide-y gan-divide-neutral-100">
-            <li v-for="(builder, key) in builders" :key="key">
+          <ul
+            class="gan-divide-y gan-divide-neutral-100 dark:gan-divide-neutral-800"
+          >
+            <li v-for="(builder, key) in builders" :key="key" class="gan-m-0">
               <span
                 @click.stop="setBuilder(builder.type)"
-                class="gan-flex gan-items-center gan-px-6 gan-py-3 gan-cursor-pointer hover:gan-bg-neutral-100"
+                class="gan-flex gan-items-center gan-px-6 gan-py-3 gan-cursor-pointer hover:gan-bg-neutral-100 dark:hover:gan-bg-black dark:hover:gan-text-white"
               >
-                <img
-                  :src="
-                    url.public +
-                    'assets' +
-                    require(`../assets/svg/${builder.type}.svg`)
-                  "
-                  class="gan-inline-block gan-mr-2 gan-w-6 gan-h-6"
-                />
+                <span
+                  class="gan-p-1 gan-bg-white dark:gan-bg-neutral-300 gan-mr-2 gan-rounded-full"
+                >
+                  <img
+                    :src="
+                      url.public +
+                      'assets' +
+                      require(`../assets/svg/${builder.type}.svg`)
+                    "
+                    class="gan-inline-block gan-w-6 gan-h-6"
+                  />
+                </span>
 
                 {{ builder.title }}
               </span>
@@ -183,12 +193,61 @@
         </div>
       </div>
       <div
+        v-if="header.show.darkmode"
+        class="gan-w-20 gan-h-full gan-border-l gan-border-neutral-200 dark:gan-border-neutral-800 gan-p-6"
+      >
+        <button
+          @click="$store.commit('TOGGLE_DARKMODE')"
+          type="button"
+          class="gan-block gan-w-full gan-text-neutral-500 hover:gan-text-neutral-800 dark:gan-text-neutral-400 dark:hover:gan-text-white gan-transition-colors gan-duration-200 gan-ease-in"
+        >
+          <svg
+            v-if="!darkmode"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="gan-fill-current"
+          >
+            <title />
+            <path
+              d="M20.21,15.32A8.56,8.56,0,1,1,11.29,3.5a.5.5,0,0,1,.51.28.49.49,0,0,1-.09.57A6.46,6.46,0,0,0,9.8,9a6.57,6.57,0,0,0,9.71,5.72.52.52,0,0,1,.58.07A.52.52,0,0,1,20.21,15.32Z"
+            />
+          </svg>
+          <svg
+            v-if="darkmode"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="gan-fill-current"
+          >
+            <title />
+            <circle cx="12" cy="12" r="5" />
+            <path d="M21,13H20a1,1,0,0,1,0-2h1a1,1,0,0,1,0,2Z" />
+            <path d="M4,13H3a1,1,0,0,1,0-2H4a1,1,0,0,1,0,2Z" />
+            <path
+              d="M17.66,7.34A1,1,0,0,1,17,7.05a1,1,0,0,1,0-1.41l.71-.71a1,1,0,1,1,1.41,1.41l-.71.71A1,1,0,0,1,17.66,7.34Z"
+            />
+            <path
+              d="M5.64,19.36a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.41L5.64,17a1,1,0,0,1,1.41,1.41l-.71.71A1,1,0,0,1,5.64,19.36Z"
+            />
+            <path d="M12,5a1,1,0,0,1-1-1V3a1,1,0,0,1,2,0V4A1,1,0,0,1,12,5Z" />
+            <path
+              d="M12,22a1,1,0,0,1-1-1V20a1,1,0,0,1,2,0v1A1,1,0,0,1,12,22Z"
+            />
+            <path
+              d="M6.34,7.34a1,1,0,0,1-.7-.29l-.71-.71A1,1,0,0,1,6.34,4.93l.71.71a1,1,0,0,1,0,1.41A1,1,0,0,1,6.34,7.34Z"
+            />
+            <path
+              d="M18.36,19.36a1,1,0,0,1-.7-.29L17,18.36A1,1,0,0,1,18.36,17l.71.71a1,1,0,0,1,0,1.41A1,1,0,0,1,18.36,19.36Z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
         v-if="header.show.exit && exit_url"
-        class="gan-w-20 gan-h-full gan-border-l gan-border-neutral-200 gan-p-6"
+        class="gan-w-20 gan-h-full gan-border-l gan-border-neutral-200 dark:gan-border-neutral-800 gan-p-6"
       >
         <a
           :href="exit_url"
-          class="gan-block gan-text-neutral-500 hover:gan-text-neutral-800 gan-transition-colors gan-duration-200 gan-ease-in"
+          class="gan-block gan-text-neutral-500 hover:gan-text-neutral-800 dark:gan-text-neutral-400 dark:hover:gan-text-white gan-transition-colors gan-duration-200 gan-ease-in"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -217,6 +276,7 @@ export default {
       logo: (state) => state.app.logo,
       exit_url: (state) => state.app.url.exit,
       builders: (state) => state.builders,
+      darkmode: (state) => state.darkmode,
     }),
   },
   data() {

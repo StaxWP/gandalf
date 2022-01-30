@@ -19,8 +19,10 @@ const store = createStore({
           logo: true,
           builders: false,
           exit: true,
+          darkmode: true,
         },
       },
+      darkmode: false,
     };
   },
   mutations: {
@@ -59,6 +61,9 @@ const store = createStore({
       if (state.step.current < 0) {
         state.step.current = 0;
       }
+    },
+    TOGGLE_DARKMODE(state) {
+      state.darkmode = !state.darkmode;
     },
   },
   getters: {

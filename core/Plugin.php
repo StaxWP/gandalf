@@ -155,10 +155,7 @@ class Plugin extends Singleton {
 				'public' => GDLF_URL,
 				'exit'   => apply_filters( 'gandalf/data/exit/url', get_admin_url() ),
 			],
-			'progress' => [
-				'bar'     => true,
-				'numbers' => true,
-			],
+			'progress' => apply_filters( 'gandalf/data/progress', 'numbers' ), // accepts 'bar', 'numbers' or '' (empty for none)
 			'steps'    => $steps,
 			'text'     => [
 				'button'      => [
@@ -175,7 +172,7 @@ class Plugin extends Singleton {
 					'builders' => apply_filters( 'gandalf/data/text/empty/builders', __( 'Hey, there\'s nothing to configure yet!', 'gandalf' ) ),
 				],
 				'placeholder' => [
-					'search' => apply_filters( 'gandalf/data/text/placeholder/search', __( 'Find the perfect Template', 'gandalf' ) ),
+					'search' => apply_filters( 'gandalf/data/text/placeholder/search', __( 'Find the perfect template', 'gandalf' ) ),
 				],
 			],
 		];

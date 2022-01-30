@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="text"
-    class="gan-text-center gan-mt-6 gan-text-neutral-700 gan-px-40"
+    class="gan-text-center gan-mt-6 gan-text-neutral-700 dark:gan-text-neutral-300 gan-px-40"
   >
     {{ text }}
   </div>

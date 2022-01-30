@@ -10,7 +10,7 @@ body {
 }
 
 .gan-yt-video iframe {
-  @apply gan-border-solid gan-border-8 gan-border-white gan-rounded gan-shadow-xl;
+  @apply gan-border-solid gan-border-8 gan-border-white dark:gan-border-neutral-900 gan-rounded gan-shadow-xl;
 }
 
 .gan-search-box {
