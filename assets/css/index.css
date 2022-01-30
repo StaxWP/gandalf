@@ -668,11 +668,20 @@ select {
   }
 }
 
-#app {
-  height: 100vh;
+body {
+  overflow: hidden;
 }
 
-#app .gan-yt-video iframe {
+#gandalf-app {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999999;
+  height: 100%;
+  width: 100%;
+}
+
+#gandalf-app .gan-yt-video iframe {
   border-radius: 0.25rem;
   border-width: 8px;
   --tw-border-opacity: 1;
@@ -722,11 +731,6 @@ select {
 .gan-mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.gan-mx-20 {
-  margin-left: 5rem;
-  margin-right: 5rem;
 }
 
 .gan-mx-32 {
@@ -989,6 +993,11 @@ select {
   padding-bottom: 0.75rem;
 }
 
+.gan-px-32 {
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+
 .gan-py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1007,11 +1016,6 @@ select {
 .gan-px-40 {
   padding-left: 10rem;
   padding-right: 10rem;
-}
-
-.gan-px-32 {
-  padding-left: 8rem;
-  padding-right: 8rem;
 }
 
 .gan-pr-8 {

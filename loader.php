@@ -64,7 +64,7 @@ add_filter(
 					'sort'   => true,
 					'source' => 'https://staxwp.com',
 				],
-				2
+				3
 			),
 		];
 	}

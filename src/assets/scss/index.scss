@@ -1,11 +1,15 @@
 @tailwind base;
 @tailwind components;
 
-#app {
-  @apply gan-h-screen;
+body {
+  @apply gan-overflow-hidden;
 }
 
-#app .gan-yt-video iframe {
+#gandalf-app {
+  @apply gan-fixed gan-w-full gan-h-full gan-top-0 gan-left-0 gan-z-999999;
+}
+
+#gandalf-app .gan-yt-video iframe {
   @apply gan-border-8 gan-border-white gan-rounded gan-shadow-xl;
 }
 

@@ -1,8 +1,13 @@
 {
-  "name": "staxwp/gandalf-wp",
+  "name": "staxwp/gandalf",
   "description": "Just a wizard. You shall follow the steps.",
   "type": "library",
   "license": "MIT",
+  "homepage": "https://staxwp.com/gandalf",
+  "support": {
+    "issues": "https://github.com/staxwp/gandalf/issues",
+    "source": "https://github.com/staxwp/gandalf"
+  },
   "autoload": {
     "psr-4": {
       "StaxWp\\Gandalf\\Core\\": "core/",
@@ -13,14 +18,18 @@
   "authors": [
     {
       "name": "George Tudor",
-      "email": "georgebitq@gmail.com"
+      "email": "george@staxwp.com"
     }
   ],
+  "config": {
+    "sort-packages": true
+  },
   "minimum-stability": "stable",
   "require-dev": {
     "pestphp/pest": "^1.21"
   },
   "require": {
+    "php": "^7.3.0|^8.0",
     "illuminate/validation": "^8.0",
     "illuminate/translation": "^8.0"
   }
