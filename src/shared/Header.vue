@@ -7,7 +7,11 @@
       class="gan-flex gan-items-center gan-h-20 gan-border-r gan-border-neutral-200"
       :class="{ 'gan-p-2': !logo, 'gan-p-6': logo }"
     >
-      <a href="https://staxwp.com/gandalf" target="_blank" class="gan-block">
+      <a
+        href="https://staxwp.com/gandalf"
+        target="_blank"
+        class="gan-block gan-h-full"
+      >
         <img v-if="logo" :src="logo" class="gan-block gan-w-full gan-h-full" />
         <svg
           v-else
