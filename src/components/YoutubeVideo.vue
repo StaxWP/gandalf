@@ -1,15 +1,8 @@
 <template>
-  <div class="gan-w-1/2 gan-flex gan-flex-col gan-flex-wrap gan-justify-center">
-    <div v-if="data.title || data.description" class="gan-mb-10">
-      <h2 v-if="data.title" class="gan-text-center gan-font-black gan-text-3xl">
-        {{ data.title }}
-      </h2>
-      <div
-        v-if="data.description"
-        class="gan-text-center gan-mt-6 gan-text-neutral-700 gan-px-40"
-      >
-        {{ data.description }}
-      </div>
+  <div class="gan-container gan-mx-auto">
+    <div v-if="data.title || data.description" class="gan-mb-10 gan-px-32">
+      <Title :text="data.title" />
+      <Description :text="data.description" />
     </div>
     <YouTube
       :src="data.url"
@@ -25,9 +18,15 @@
 
 <script>
 import YouTube from "vue3-youtube";
+import Title from "../shared/ui/Title.vue";
+import Description from "../shared/ui/Description.vue";
 
 export default {
-  components: { YouTube },
+  components: {
+    YouTube,
+    Title,
+    Description,
+  },
   props: {
     data: {
       type: Object,

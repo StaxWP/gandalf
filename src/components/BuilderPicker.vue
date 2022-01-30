@@ -1,19 +1,12 @@
 <template>
-  <div class="gan-w-1/2 gan-flex gan-flex-col gan-flex-wrap gan-justify-center">
-    <div v-if="data.title || data.description" class="gan-mb-10">
-      <h2 v-if="data.title" class="gan-text-center gan-font-black gan-text-3xl">
-        {{ data.title }}
-      </h2>
-      <div
-        v-if="data.description"
-        class="gan-text-center gan-mt-6 gan-text-neutral-700 gan-px-40"
-      >
-        {{ data.description }}
-      </div>
+  <div class="gan-container gan-mx-auto">
+    <div v-if="data.title || data.description" class="gan-mb-10 gan-px-32">
+      <Title :text="data.title" />
+      <Description :text="data.description" />
     </div>
     <div
       v-if="Object.keys(builders).length"
-      class="gan-flex gan-justify-center gan-gap-4 gan-mx-20"
+      class="gan-flex gan-justify-center gan-gap-4 gan-mx-32"
     >
       <div
         v-for="(builder, key) in builders"
@@ -34,14 +27,19 @@
         <h4 class="gan-mt-6">{{ builder.title }}</h4>
       </div>
     </div>
-    <div v-else class="gan-mx-20"></div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Title from "../shared/ui/Title.vue";
+import Description from "../shared/ui/Description.vue";
 
 export default {
+  components: {
+    Title,
+    Description,
+  },
   computed: {
     ...mapState({
       url: (state) => state.app.url,

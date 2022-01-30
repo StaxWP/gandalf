@@ -2,6 +2,13 @@ module.exports = {
   prefix: "gan-",
   content: ["./src/**/*.{js,jsx,ts,tsx,vue}"],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "800px",
+      xl: "1000px",
+      "2xl": "1200px",
+    },
     fontFamily: {
       sans: ["'Open Sans'", "sans-serif"],
     },
